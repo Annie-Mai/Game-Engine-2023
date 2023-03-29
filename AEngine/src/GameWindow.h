@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "AEngineUtil.h"
+#include "WindowImplementation.h"
 
 namespace AEngine
 {
@@ -11,11 +12,11 @@ namespace AEngine
 		static void Init();
 		static std::unique_ptr<GameWindow>& GetWindow();
 
-		void CreateWindow(int width, int height, const std::string& windowName);
-		void CreateWindow(int width, int height, std::string&& windowName);
+		static void CreateWindow(int width, int height, const std::string& windowName);
+		static void CreateWindow(int width, int height, std::string&& windowName);
 
-		int GetWidth() const;
-		int GetHeight() const;
+		static int GetWidth();
+		static int GetHeight();
 
 	private:
 		GameWindow();

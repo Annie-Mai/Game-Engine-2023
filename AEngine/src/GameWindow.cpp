@@ -15,18 +15,18 @@ namespace AEngine
 	}
 	void GameWindow::CreateWindow(int width, int height, const std::string& windowName)
 	{
-		mImplementation->CreateWindow(width, height, windowName);
+		mInstance->mImplementation->CreateWindow(width, height, windowName);
 	}
 	void GameWindow::CreateWindow(int width, int height, std::string&& windowName)
 	{
-		mImplementation->CreateWindow(width, height, windowName);
+		mInstance->mImplementation->CreateWindow(width, height, windowName);
 	}
-	int GameWindow::GetWidth() const
+	int GameWindow::GetWidth()
 	{
-		return mImplementation->GetWidth();
+		return mInstance->mImplementation->GetWidth();
 	}
-	int GameWindow::GetHeight() const
+	int GameWindow::GetHeight()
 	{
-		return mImplementation->GetHeight();
+		return mInstance->mImplementation->GetHeight();
 	}
 }

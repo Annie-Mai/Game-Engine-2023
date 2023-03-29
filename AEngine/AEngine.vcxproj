@@ -20,11 +20,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AEngineApp.cpp" />
+    <ClCompile Include="src\GameWindow.cpp" />
+    <ClCompile Include="src\GLFWCode\GLFWimplementation.cpp" />
+    <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AEngine.h" />
     <ClInclude Include="src\AEngineApp.h" />
     <ClInclude Include="src\AEngineUtil.h" />
+    <ClInclude Include="src\GameWindow.h" />
+    <ClInclude Include="src\GLFWCode\GLFWimplementation.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\WindowImplementation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\glfw_build\src\glfw.vcxproj">
+      <Project>{d7fa134d-f9f4-3ab0-8b1b-05c56862500f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -113,6 +125,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +142,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
