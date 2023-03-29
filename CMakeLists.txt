@@ -17,5 +17,6 @@ endif()
 
 add_subdirectory(AEngine)
 add_subdirectory(S23_Game)
+add_subdirectory(glfw)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT S23_Game)
