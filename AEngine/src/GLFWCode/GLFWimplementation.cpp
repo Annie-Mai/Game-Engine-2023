@@ -1,4 +1,4 @@
-#include "../pch.h"
+#include "pch.h"
 #include "GLFWimplementation.h"
 
 namespace AEngine
@@ -22,6 +22,16 @@ namespace AEngine
 
 		mWindow = glfwCreateWindow(width, height, windowName.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(mWindow);
+	}
+
+	void GLFWimplementation::SwapBuffers()
+	{
+		glfwSwapBuffers(mWindow);
+	}
+
+	void GLFWimplementation::PollEvents()
+	{
+		glfwPollEvents();
 	}
 
 	int GLFWimplementation::GetWidth() const

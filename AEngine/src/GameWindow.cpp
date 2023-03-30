@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "GameWindow.h"
+#include "GLFWCode/GLFWimplementation.h"
 
 
 namespace AEngine
 {
+
+
 	void GameWindow::Init()
 	{
 		if (!mInstance)
@@ -21,6 +24,14 @@ namespace AEngine
 	{
 		mInstance->mImplementation->CreateWindow(width, height, windowName);
 	}
+	void GameWindow::SwapBuffers()
+	{
+		mInstance->mImplementation->SwapBuffers();
+	}
+	void GameWindow::PollEvents()
+	{
+		mInstance->mImplementation->PollEvents();
+	}
 	int GameWindow::GetWidth()
 	{
 		return mInstance->mImplementation->GetWidth();
@@ -28,5 +39,18 @@ namespace AEngine
 	int GameWindow::GetHeight()
 	{
 		return mInstance->mImplementation->GetHeight();
+	}
+	GameWindow::~GameWindow()
+	{
+		if (mImplementation != nullptr)
+			delete mImplementation;
+	}
+	GameWindow::GameWindow()
+	{
+#ifdef AENGINE_GLFW
+		mImplementation = new GLFWimplementation;
+#else
+		#ERROR_only_GLFW_is_supported
+#endif
 	}
 }

@@ -15,8 +15,13 @@ namespace AEngine
 		static void CreateWindow(int width, int height, const std::string& windowName);
 		static void CreateWindow(int width, int height, std::string&& windowName);
 
+		static void SwapBuffers();
+		static void PollEvents();
+
 		static int GetWidth();
 		static int GetHeight();
+
+		~GameWindow();
 
 	private:
 		GameWindow();
