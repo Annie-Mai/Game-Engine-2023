@@ -22,10 +22,16 @@
     <ClCompile Include="src\AEngineApp.cpp" />
     <ClCompile Include="src\GameWindow.cpp" />
     <ClCompile Include="src\GLFWCode\GLFWimplementation.cpp" />
+    <ClCompile Include="src\Image.cpp" />
+    <ClCompile Include="src\OpenGLCode\OpenGLImage.cpp" />
+    <ClCompile Include="src\OpenGLCode\OpenGLRenderer.cpp" />
+    <ClCompile Include="src\OpenGLCode\OpenGLShader.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AEngine.h" />
@@ -33,7 +39,17 @@
     <ClInclude Include="src\AEngineUtil.h" />
     <ClInclude Include="src\GameWindow.h" />
     <ClInclude Include="src\GLFWCode\GLFWimplementation.h" />
+    <ClInclude Include="src\Image.h" />
+    <ClInclude Include="src\ImplImage.h" />
+    <ClInclude Include="src\ImplRenderer.h" />
+    <ClInclude Include="src\ImplShader.h" />
+    <ClInclude Include="src\OpenGLCode\OpenGLImage.h" />
+    <ClInclude Include="src\OpenGLCode\OpenGLRenderer.h" />
+    <ClInclude Include="src\OpenGLCode\OpenGLShader.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\RendererTypes.h" />
+    <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\WindowImplementation.h" />
   </ItemGroup>
   <ItemGroup>
@@ -131,7 +147,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS;AENGINE_GLFW</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS;AENGINE_GLFW;AENGINE_OPENGL;AENGINE_DEBUG=2</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -149,7 +165,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS;AENGINE_GLFW</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);AENGINE_LIB;AENGINE_WINDOWS;AENGINE_GLFW;AENGINE_OPENGL</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>

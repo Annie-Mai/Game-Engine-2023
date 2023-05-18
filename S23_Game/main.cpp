@@ -12,10 +12,6 @@ public:
 
 	virtual void OnUpdate() override
 	{
-		std::cout << "Game is running" << std::endl;
-
-		AEngine::GameWindow::SwapBuffers();
-		AEngine::GameWindow::PollEvents();
 	}
 };
 
