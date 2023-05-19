@@ -16,7 +16,8 @@ namespace AEngine
 	{
 		Renderer renderer;
 
-		Image pic{ "../Assets/Images/test.png" };
+		Image pic{ "../Assets/Images/cat.png" };
+
 		pic.Activate();
 
 		Shader sProgram{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };

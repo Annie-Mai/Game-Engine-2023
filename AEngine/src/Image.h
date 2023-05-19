@@ -19,7 +19,7 @@ namespace AEngine
 
 
 	private:
-		std::unique_ptr<ImplImage> mImplementation{ nullptr };;
+		std::unique_ptr<ImplImage> mImplementation{ nullptr };
 
 	};
 }

@@ -75,9 +75,8 @@ namespace AEngine
 		std::string vShader;
 		std::ifstream ifile{ vertexFile };
 		std::string line;
-		while (ifile)
+		while (std::getline(ifile, line))
 		{
-			std::getline(ifile, line);
 			vShader += line;
 			vShader += "\n";
 		}
@@ -100,9 +99,8 @@ namespace AEngine
 
 		std::string fShader;
 		std::ifstream i2file{ fragmentFile };
-		while (i2file)
+		while (std::getline(i2file, line))
 		{
-			std::getline(i2file, line);
 			fShader += line;
 			fShader += "\n";
 		}
