@@ -25,8 +25,8 @@ namespace AEngine
 		ScreenCoord mPosition;
 
 		friend class Renderer;
-		friend bool UnitsOverlap(const Unit& a, const Unit& b);
+		friend AENGINE_API bool UnitsOverlap(const Unit& a, const Unit& b);
 	};
 
-	bool UnitsOverlap(const Unit& a, const Unit& b);
+	bool AENGINE_API UnitsOverlap(const Unit& a, const Unit& b);
 }

@@ -15,7 +15,7 @@ namespace AEngine
 	AEngineApp::AEngineApp()
 	{
 		GameWindow::Init();
-		GameWindow::CreateWindow(800, 600, "TestName");
+		GameWindow::CreateWindow(800, 900, "TestName");
 
 		SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
 	}
