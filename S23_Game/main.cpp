@@ -29,7 +29,6 @@ public:
 			renderer.Draw(allback, { 0,-450 });
 			renderer.Draw(losescreen, { 0,0 });
 		}
-
 		
 	}
 
@@ -41,10 +40,12 @@ public:
 		renderer.Draw(unit);
 		renderer.Draw(chicken);
 		renderer.Draw(egg);
+		renderer.Draw(egg1);
 		renderer.Draw(heart1);
 		renderer.Draw(heart2);
 		renderer.Draw(heart3);
 
+		renderScore();
 		enableChickenMovement();
 		enableCloudDrop();
 		StartScreen = false;
@@ -106,7 +107,6 @@ public:
 		}
 		int cloudXPos = chicken.GetCoords().xCoord;
 		int cloudYPos = chicken.GetCoords().yCoord;
-
 		//if egg touches player
 		if (AEngine::UnitsOverlap(egg, unit))
 		{
@@ -146,6 +146,14 @@ public:
 		{
 			dropSpeed = -25;
 		}
+		if (eggsCollected == 20)
+		{
+			dropSpeed = -30;
+		}
+		if (eggsCollected == 30)
+		{
+			dropSpeed = -40;
+		}
 
 		if (lives == 3)
 		{
@@ -167,6 +175,59 @@ public:
 		}
 		return collected;
 	}
+
+	void renderScore()
+	{
+		int gap = 0;
+		std::string numEggs = std::to_string(eggsCollected);
+		int i = 0;
+		while (i <= numEggs.length())
+		{
+			if (numEggs[i] == '1')
+			{
+				renderer.Draw(one, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '2')
+			{
+				renderer.Draw(two, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '3')
+			{
+				renderer.Draw(three, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '4')
+			{
+				renderer.Draw(four, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '5')
+			{
+				renderer.Draw(five, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '6')
+			{
+				renderer.Draw(six, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '7')
+			{
+				renderer.Draw(seven, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '8')
+			{
+				renderer.Draw(eight, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '9')
+			{
+				renderer.Draw(nine, { 80 + gap, 90 });
+			}
+			if (numEggs[i] == '0')
+			{
+				renderer.Draw(zero, { 80 + gap, 90 });
+			}
+			i++;
+			gap += 50;
+		}
+	}
+
 
 	void enableChickenMovement()
 	{
@@ -257,6 +318,7 @@ private:
 
 	//Entity-drop
 	AEngine::Unit egg{ "../Assets/Images/egg.png", {350, 800} };
+	AEngine::Unit egg1{ "../Assets/Images/eggscore.png", {10, 80} };
 	bool dropped = false;
 	bool collected = false;
 
@@ -275,6 +337,18 @@ private:
 
 	int eggsCollectedDefault = 0;
 	int eggsCollected = eggsCollectedDefault;
+
+	//Number values
+	AEngine::Image one{ "../Assets/Images/Num/1.png" };
+	AEngine::Image two{ "../Assets/Images/Num/2.png" };
+	AEngine::Image three{ "../Assets/Images/Num/3.png" };
+	AEngine::Image four{ "../Assets/Images/Num/4.png" };
+	AEngine::Image five{ "../Assets/Images/Num/5.png" };
+	AEngine::Image six{ "../Assets/Images/Num/6.png" };
+	AEngine::Image seven{ "../Assets/Images/Num/7.png" };
+	AEngine::Image eight{ "../Assets/Images/Num/8.png" };
+	AEngine::Image nine{ "../Assets/Images/Num/9.png" };
+	AEngine::Image zero{ "../Assets/Images/Num/0.png" };
 };
 
 AENGINE_GAME_START(S23_Game_App);

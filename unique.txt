@@ -36,9 +36,11 @@ FEATURES ADDED:
 
 - when the egg drops and overlaps with the player, the egg counter value would increase
 
-    - when the value hits 5, the speed of the egg drop increases by 5. It keeps going like that and is capped at 25
+    - as the player progressing the speed in which the egg drops increases. It keeps going like that and is capped at 40
 
 - when the egg drops and overlaps with the ground, the life counter goes down by one, and the number of hearts seen on the bottom left of the screen decreases by one.
+
+- on the bottome left of the screen the user can see the number of eggs collected and it will update as the user keeps collecting.
 
 - once the # of hearts hit zero, the player will be on its last life - when this is the case the next egg that touches the ground will send the user into the lose screen
 
