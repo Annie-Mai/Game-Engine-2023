@@ -15,7 +15,7 @@ namespace AEngine
 	AEngineApp::AEngineApp()
 	{
 		GameWindow::Init();
-		GameWindow::CreateWindow(800, 900, "TestName");
+		GameWindow::CreateWindow(800, 900, "Egg Catcher");
 
 		SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
 	}
