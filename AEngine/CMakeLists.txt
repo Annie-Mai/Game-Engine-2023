@@ -16,8 +16,8 @@ set(HEADER_FILES
 	src/OpenGLCode/OpenGLImage.h
 	src/Unit.h
 	src/RendererTypes.h
-	src/FloorEvents.h
-	src/FloorKeys.h
+	src/AEngineEvents.h
+	src/AEngineKeys.h
 
 )
 
@@ -32,7 +32,7 @@ set(SOURCE_FILES
 	src/Image.cpp
 	src/OpenGLCode/OpenGLImage.cpp
 	src/Unit.cpp
-	src/FloorEvents.cpp
+	src/AEngineEvents.cpp
 )
 
 add_library(AEngine SHARED ${HEADER_FILES} ${SOURCE_FILES})
