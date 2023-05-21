@@ -134,15 +134,15 @@ public:
 			}
 			
 		}
-		if (eggsCollected == 1)
+		if (eggsCollected == 5)
 		{
 			dropSpeed = -15;
 		}
-		if (eggsCollected == 2)
+		if (eggsCollected == 10)
 		{
 			dropSpeed = -20;
 		}
-		if (eggsCollected == 3)
+		if (eggsCollected == 15)
 		{
 			dropSpeed = -25;
 		}
