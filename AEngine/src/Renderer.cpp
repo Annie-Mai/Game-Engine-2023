@@ -51,6 +51,17 @@ namespace AEngine
 			coords);
 
 	}
+
+	void Renderer::Draw(Unit& unit, Shader& shader)
+	{
+		Draw(unit.mImage, shader, unit.mPosition);
+	}
+
+	void Renderer::Draw(Unit& unit)
+	{
+		Draw(unit.mImage, unit.mPosition);
+	}
+
 	void Renderer::Clear()
 	{
 		mImplementation->Clear();

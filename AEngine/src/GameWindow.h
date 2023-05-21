@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "AEngineUtil.h"
 #include "WindowImplementation.h"
+#include "AEngineEvents.h"
 
 namespace AEngine
 {
@@ -22,6 +23,10 @@ namespace AEngine
 		static int GetHeight();
 
 		~GameWindow();
+
+		void SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc);
+		void SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc);
+		void SetWindowCloseCallback(std::function<void()> callbackFunc);
 
 	private:
 		GameWindow();

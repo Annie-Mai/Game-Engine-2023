@@ -5,7 +5,7 @@
 
 namespace AEngine
 {
-	AEngine::OpenGLImage::OpenGLImage(const std::string& imageFile)
+	OpenGLImage::OpenGLImage(const std::string& imageFile)
 	{
 		glGenTextures(1, &mImage);
 		glBindTexture(GL_TEXTURE_2D, mImage);
@@ -29,7 +29,7 @@ namespace AEngine
 		stbi_image_free(data);
 	}
 
-	AEngine::OpenGLImage::OpenGLImage(std::string&& imageFile)
+	OpenGLImage::OpenGLImage(std::string&& imageFile)
 	{
 		glGenTextures(1, &mImage);
 		glBindTexture(GL_TEXTURE_2D, mImage);

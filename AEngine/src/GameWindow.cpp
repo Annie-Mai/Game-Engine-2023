@@ -54,6 +54,21 @@ namespace AEngine
 			delete mImplementation;
 	}
 
+	void GameWindow::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc)
+	{
+		mImplementation->SetKeyPressedCallback(callbackFunc);
+	}
+
+	void GameWindow::SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc)
+	{
+		mImplementation->SetKeyReleasedCallback(callbackFunc);
+	}
+
+	void GameWindow::SetWindowCloseCallback(std::function<void()> callbackFunc)
+	{
+		mImplementation->SetWindowCloseCallback(callbackFunc);
+	}
+
 	GameWindow::GameWindow()
 	{
 #ifdef AENGINE_GLFW

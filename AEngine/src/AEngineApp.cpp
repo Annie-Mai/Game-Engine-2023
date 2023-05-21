@@ -12,26 +12,20 @@
 
 namespace AEngine
 {
+	AEngineApp::AEngineApp()
+	{
+		GameWindow::Init();
+		GameWindow::CreateWindow(800, 900, "TestName");
+
+		SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
+	}
+
 	void AEngineApp::Run()
 	{
-		Renderer renderer;
-
-		Image pic{ "../Assets/Images/cat.png" };
-
-		pic.Activate();
-
-		Shader sProgram{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };
-
-		sProgram.Pass2FloatValues("screenSize", GameWindow::GetWidth(), GameWindow::GetHeight());
-
 		mNextFrameTime = std::chrono::steady_clock::now();
 
-		while (true)
+		while (!mGameWindowShouldClose)
 		{
-			renderer.Clear();
-
-			renderer.Draw(pic, { 200, 100 });
-
 			OnUpdate();
 
 			std::this_thread::sleep_until(mNextFrameTime);
@@ -41,5 +35,25 @@ namespace AEngine
 
 			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 		}
+	}
+
+	void AEngineApp::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc)
+	{
+		GameWindow::GetWindow()->SetKeyPressedCallback(callbackFunc);
+	}
+
+	void AEngineApp::SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc)
+	{
+		GameWindow::GetWindow()->SetKeyReleasedCallback(callbackFunc);
+	}
+
+	void AEngineApp::SetWindowCloseCallback(std::function<void()> callbackFunc)
+	{
+		GameWindow::GetWindow()->SetWindowCloseCallback(callbackFunc);
+	}
+
+	void AEngineApp::DefaultWindowCloseHandler()
+	{
+		mGameWindowShouldClose = true;
 	}
 }
