@@ -30,6 +30,7 @@ public:
 			renderer.Draw(losescreen, { 0,0 });
 		}
 
+		
 	}
 
 	void StartGame()
@@ -40,6 +41,9 @@ public:
 		renderer.Draw(unit);
 		renderer.Draw(chicken);
 		renderer.Draw(egg);
+		renderer.Draw(heart1);
+		renderer.Draw(heart2);
+		renderer.Draw(heart3);
 
 		enableChickenMovement();
 		enableCloudDrop();
@@ -61,7 +65,7 @@ public:
 		}
 		if (dropped == true)
 		{
-			egg.UpdateYCoord(-10);
+			egg.UpdateYCoord(dropSpeed);
 			Collected();
 		}
 		
@@ -96,6 +100,10 @@ public:
 
 	bool Collected()
 	{
+		if (AEngine::UnitsOverlap(egg, ground))
+		{
+			lives -= 1;
+		}
 		int cloudXPos = chicken.GetCoords().xCoord;
 		int cloudYPos = chicken.GetCoords().yCoord;
 
@@ -105,15 +113,57 @@ public:
 			egg.SetCoords({ cloudXPos, cloudYPos });
 			collected = true;
 			dropped = false;
+			eggsCollected += 1;
 		}
 		//if egg touches the ground
 		if (AEngine::UnitsOverlap(egg, ground))
 		{
-			egg.SetCoords({ cloudXPos, cloudYPos });
-			collected = false;
-			dropped = false;
-			PlayScreen = false;
-			LoseScreen = true;
+			if (lives >= 0)
+			{
+				egg.SetCoords({ cloudXPos, cloudYPos });
+				collected = false;
+				dropped = false;
+			}
+			if (lives < 0)
+			{
+				lives = defaultLives + 1;
+				eggsCollected = eggsCollectedDefault;
+				dropSpeed = dropSpeedDefault;
+				PlayScreen = false;
+				LoseScreen = true;
+			}
+			
+		}
+		if (eggsCollected == 1)
+		{
+			dropSpeed = -15;
+		}
+		if (eggsCollected == 2)
+		{
+			dropSpeed = -20;
+		}
+		if (eggsCollected == 3)
+		{
+			dropSpeed = -25;
+		}
+
+		if (lives == 3)
+		{
+			heart1.SetCoords({ 20, 20 });
+			heart2.SetCoords({ 80, 20 });
+			heart3.SetCoords({ 140, 20 });
+		}
+		if (lives == 2)
+		{
+			heart3.SetCoords({ 0, -100 });
+		}
+		if (lives == 1)
+		{
+			heart2.SetCoords({ 0, -100 });
+		}
+		if (lives == 0)
+		{
+			heart1.SetCoords({ 0, -100 });
 		}
 		return collected;
 	}
@@ -148,7 +198,7 @@ public:
 		if (e.GetKeyCode() == AENGINE_KEY_RIGHT or e.GetKeyCode() == AENGINE_KEY_D)
 		{
 			if(unit.GetCoords().xCoord <= 680)
-				unit.UpdateXCoord(30);
+				unit.UpdateXCoord(60);
 			else
 			{
 				unit.SetCoords({ 679, 150 });
@@ -158,7 +208,7 @@ public:
 		else if (e.GetKeyCode() == AENGINE_KEY_LEFT or e.GetKeyCode() == AENGINE_KEY_A)
 		{
 			if (unit.GetCoords().xCoord >= 0)
-				unit.UpdateXCoord(-30);
+				unit.UpdateXCoord(-60);
 			else
 			{
 				unit.SetCoords({ 1, 150 });
@@ -192,6 +242,9 @@ private:
 	//Background
 	AEngine::Image back { "../Assets/Images/background.png" };
 	AEngine::Image allback { "../Assets/Images/allbg.png" };
+	AEngine::Unit heart1 { "../Assets/Images/heart1.png", { 20, 20 } };
+	AEngine::Unit heart2 { "../Assets/Images/heart2.png", { 80, 20 } };
+	AEngine::Unit heart3 { "../Assets/Images/heart3.png", { 140, 20 } };
 
 	AEngine::Image startscreen { "../Assets/Images/start.png" };
 	AEngine::Image losescreen { "../Assets/Images/lose.png" };
@@ -207,12 +260,21 @@ private:
 	bool dropped = false;
 	bool collected = false;
 
+	int dropSpeedDefault = -10;
+	int dropSpeed = dropSpeedDefault;
+
 
 	AEngine::Image start{ "../Assets/Images/start.png" };
 
 	bool StartScreen = true;
 	bool PlayScreen = false;
 	bool LoseScreen = false;
+
+	int defaultLives = 3;
+	int lives = defaultLives;
+
+	int eggsCollectedDefault = 0;
+	int eggsCollected = eggsCollectedDefault;
 };
 
 AENGINE_GAME_START(S23_Game_App);
