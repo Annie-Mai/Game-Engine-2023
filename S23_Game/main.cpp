@@ -28,6 +28,7 @@ public:
 			renderer.Clear();
 			renderer.Draw(allback, { 0,-450 });
 			renderer.Draw(losescreen, { 0,0 });
+			renderScore(350, 200);
 		}
 		
 	}
@@ -40,12 +41,9 @@ public:
 		renderer.Draw(unit);
 		renderer.Draw(chicken);
 		renderer.Draw(egg);
-		renderer.Draw(egg1);
-		renderer.Draw(heart1);
-		renderer.Draw(heart2);
-		renderer.Draw(heart3);
 
-		renderScore();
+		renderScore(30, 90);
+		renderHearts(20, 20);
 		enableChickenMovement();
 		enableCloudDrop();
 		StartScreen = false;
@@ -99,7 +97,7 @@ public:
 		return n;
 	}
 
-	bool Collected()
+	void Collected()
 	{
 		if (AEngine::UnitsOverlap(egg, ground))
 		{
@@ -111,7 +109,6 @@ public:
 		if (AEngine::UnitsOverlap(egg, unit))
 		{
 			egg.SetCoords({ cloudXPos, cloudYPos });
-			collected = true;
 			dropped = false;
 			eggsCollected += 1;
 		}
@@ -121,14 +118,10 @@ public:
 			if (lives >= 0)
 			{
 				egg.SetCoords({ cloudXPos, cloudYPos });
-				collected = false;
 				dropped = false;
 			}
 			if (lives < 0)
 			{
-				lives = defaultLives + 1;
-				eggsCollected = eggsCollectedDefault;
-				dropSpeed = dropSpeedDefault;
 				PlayScreen = false;
 				LoseScreen = true;
 			}
@@ -155,75 +148,66 @@ public:
 			dropSpeed = -40;
 		}
 
-		if (lives == 3)
-		{
-			heart1.SetCoords({ 20, 20 });
-			heart2.SetCoords({ 80, 20 });
-			heart3.SetCoords({ 140, 20 });
-		}
-		if (lives == 2)
-		{
-			heart3.SetCoords({ 0, -100 });
-		}
-		if (lives == 1)
-		{
-			heart2.SetCoords({ 0, -100 });
-		}
-		if (lives == 0)
-		{
-			heart1.SetCoords({ 0, -100 });
-		}
-		return collected;
 	}
 
-	void renderScore()
+	void renderHearts(int xPos, int yPos)
 	{
 		int gap = 0;
+		for (int i = 0; i < lives; i++)
+		{
+			renderer.Draw(heart, { xPos + gap, yPos });
+			gap += 60;
+		}
+	}
+
+	void renderScore(int xPos, int yPos)
+	{
+		int gap = 50;
+		AEngine::Unit egg1{ "../Assets/Images/eggscore.png", {xPos - 20, yPos} };
+		renderer.Draw(egg1);
 		std::string numEggs = std::to_string(eggsCollected);
-		int i = 0;
-		while (i <= numEggs.length())
+		for (int i = 0; i <= numEggs.length(); i++)
 		{
 			if (numEggs[i] == '1')
 			{
-				renderer.Draw(one, { 80 + gap, 90 });
+				renderer.Draw(one, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '2')
 			{
-				renderer.Draw(two, { 80 + gap, 90 });
+				renderer.Draw(two, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '3')
 			{
-				renderer.Draw(three, { 80 + gap, 90 });
+				renderer.Draw(three, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '4')
 			{
-				renderer.Draw(four, { 80 + gap, 90 });
+				renderer.Draw(four, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '5')
 			{
-				renderer.Draw(five, { 80 + gap, 90 });
+				renderer.Draw(five, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '6')
 			{
-				renderer.Draw(six, { 80 + gap, 90 });
+				renderer.Draw(six, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '7')
 			{
-				renderer.Draw(seven, { 80 + gap, 90 });
+				renderer.Draw(seven, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '8')
 			{
-				renderer.Draw(eight, { 80 + gap, 90 });
+				renderer.Draw(eight, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '9')
 			{
-				renderer.Draw(nine, { 80 + gap, 90 });
+				renderer.Draw(nine, { xPos + gap, yPos + 5 });
 			}
 			if (numEggs[i] == '0')
 			{
-				renderer.Draw(zero, { 80 + gap, 90 });
+				renderer.Draw(zero, { xPos + gap, yPos + 5 });
 			}
-			i++;
 			gap += 50;
 		}
 	}
@@ -287,6 +271,9 @@ public:
 		{
 			if (e.GetKeyCode() == AENGINE_KEY_SPACE)
 			{
+				lives = defaultLives + 1;
+				eggsCollected = eggsCollectedDefault;
+				dropSpeed = dropSpeedDefault;
 				LoseScreen = false;
 				PlayScreen = true;
 				StartGame();
@@ -303,9 +290,7 @@ private:
 	//Background
 	AEngine::Image back { "../Assets/Images/background.png" };
 	AEngine::Image allback { "../Assets/Images/allbg.png" };
-	AEngine::Unit heart1 { "../Assets/Images/heart1.png", { 20, 20 } };
-	AEngine::Unit heart2 { "../Assets/Images/heart2.png", { 80, 20 } };
-	AEngine::Unit heart3 { "../Assets/Images/heart3.png", { 140, 20 } };
+	AEngine::Image heart { "../Assets/Images/heart.png"};
 
 	AEngine::Image startscreen { "../Assets/Images/start.png" };
 	AEngine::Image losescreen { "../Assets/Images/lose.png" };
@@ -318,9 +303,7 @@ private:
 
 	//Entity-drop
 	AEngine::Unit egg{ "../Assets/Images/egg.png", {350, 800} };
-	AEngine::Unit egg1{ "../Assets/Images/eggscore.png", {10, 80} };
 	bool dropped = false;
-	bool collected = false;
 
 	int dropSpeedDefault = -10;
 	int dropSpeed = dropSpeedDefault;

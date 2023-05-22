@@ -24,6 +24,8 @@ FEATURES ADDED:
 
 - When the player loses all its lives they will be sent to a lose screen. From there they have the option to try again by presssing spacebar.
 
+    - in addition, the number of eggs collected will be displayed
+
 [Gameplay]
 
 - there is a Chicken on the top of the screen that moves left and right accross the screen.
