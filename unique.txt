@@ -1,4 +1,4 @@
-Annie Mai
+Annie Mai Spring 2023 Game Engines
 ------------------------------------------------------------------------------------------------------------------
 RULES OF THE GAME:
 
@@ -10,9 +10,10 @@ the drop speed increases to give a bit of a challenge.
 FEATURES ADDED:
 
 [Player Movement]
+
 - Players can move with either the left and right arrow key, or A and D keys
 
-- When the player gets close to the edge of the screen, instead of being able to run off, it will move the player back to the screen, this is to add a little bit of a boundary to it
+- When the player gets close to the edge of the screen, instead of being able to run off, it will move the player back to the screen, this is to add a little bit of a boundary to the player movement
 
 [Sprites/Assets - scene changes]
 
@@ -24,7 +25,7 @@ FEATURES ADDED:
 
 - When the player loses all its lives they will be sent to a lose screen. From there they have the option to try again by presssing spacebar.
 
-    - in addition, the number of eggs collected will be displayed
+    - in addition, the number of eggs collected will be displayed on the bottom
 
 [Gameplay]
 
@@ -38,7 +39,7 @@ FEATURES ADDED:
 
 - when the egg drops and overlaps with the player, the egg counter value would increase
 
-    - as the player progressing the speed in which the egg drops increases. It keeps going like that and is capped at 40
+    - as the player progresses and collects more eggs the speed in which the egg drops increases. It keeps going like that and is capped at 40
 
 - when the egg drops and overlaps with the ground, the life counter goes down by one, and the number of hearts seen on the bottom left of the screen decreases by one.
 
@@ -46,6 +47,6 @@ FEATURES ADDED:
 
 - once the # of hearts hit zero, the player will be on its last life - when this is the case the next egg that touches the ground will send the user into the lose screen
 
-- when in the lose screen all the values get reseted ( drop speed, lives, eggs collected )
+- when in the lose screen all the values get reseted ( drop speed, lives, eggs collected ), this is called when the player presses the spacebar
 
 - the game will keep looping until the user closes out the game
